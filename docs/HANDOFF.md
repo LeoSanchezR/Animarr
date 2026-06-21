@@ -62,6 +62,22 @@
 - ❌ Assemblies/namespaces not renamed
 - ❌ Localization keys not updated
 
+### Phase 1F: JKAnime Integration
+- ✅ Backend search service implemented
+- ✅ API endpoint created (`/api/v3/jkanime/search`)
+- ✅ Frontend link added to series detail page
+- ❌ Persistence of JKAnime URLs (future)
+- ❌ Manual search UI (future)
+- ❌ Match confidence display (future)
+
+### AniDB Airing Tracker (Research Only)
+- ✅ Research completed — See `ANIDB_AIRING_TRACKER_RESEARCH.md`
+- ✅ HTTP and UDP API evaluated
+- ✅ Rate limits and authentication documented
+- ✅ Data model and mapping strategy designed
+- ✅ UI location and implementation phases planned
+- ❌ Implementation not started (Phase D)
+
 ## Known Issues
 
 ### Technical Debt

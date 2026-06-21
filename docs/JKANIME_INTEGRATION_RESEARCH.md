@@ -291,3 +291,50 @@ A third-party Node.js scraper API exists:
 | Search service | Spanish title search | Medium |
 | Import lists | JKAnime watchlist import | Low |
 | UI | Spanish title display | Low |
+
+---
+
+## Implementation Status (Phase 1F)
+
+### Implemented
+
+| Component | Status | Location |
+|-----------|--------|----------|
+| Backend search service | ✅ Complete | `src/NzbDrone.Core/JKAnime/JKAnimeSearchService.cs` |
+| API endpoint | ✅ Complete | `GET /api/v3/jkanime/search?term={title}` |
+| Frontend link | ✅ Complete | `SeriesDetailsLinks.tsx` (series detail page) |
+
+### API Response Format
+
+```json
+[
+  {
+    "title": "ONE PIECE",
+    "slug": "one-piece",
+    "url": "https://jkanime.net/one-piece/",
+    "confidence": 0.95
+  }
+]
+```
+
+### Frontend Integration
+
+- JKAnime link appears in external links tooltip on series detail page
+- Link uses series title for search: `https://jkanime.net/buscar/{title}`
+- No persistence of JKAnime URLs yet (future phase)
+
+### Safety Measures Implemented
+
+- Conservative timeout (10s)
+- User-Agent identifies as Animarr
+- Graceful error handling
+- No media downloading
+- No captcha/DRM bypass
+
+### Future Work
+
+- [ ] Persist selected JKAnime URL in series metadata
+- [ ] Add manual search UI with result selection
+- [ ] Display match confidence in UI
+- [ ] Enrich alternate titles from JKAnime metadata
+- [ ] Add JKAnime as metadata provider

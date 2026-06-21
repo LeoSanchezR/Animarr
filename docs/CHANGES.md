@@ -2,6 +2,85 @@
 
 ## Chronological Development Log
 
+### 2026-06-21 - AniDB Airing Tracker Research
+
+**Status:** Research Only
+
+#### Research Summary
+- Evaluated AniDB HTTP API and UDP API for airing date retrieval
+- UDP API recommended for calendar and episode data (CALENDAR command)
+- Rate limits: 0.5 packets/2 seconds (UDP), 1 request/2 seconds (HTTP)
+- Authentication: Client registration required, username/password for UDP
+- AniDB provides per-episode air dates, making it ideal for airing tracking
+
+#### Key Findings
+- **CALENDAR command** returns 25 most recently aired + 25 next upcoming anime
+- **EPISODE command** returns episode-specific air dates
+- **Rate limit strategy:** Cache calendar data for 6 hours, anime data for 24 hours
+- **Mapping strategy:** Add `AnidbId` to Series model, auto-map from AniList/MAL cross-references
+- **UI location:** "Next Episode" card on series detail page, calendar overlay
+
+#### Documentation Created
+- `docs/ANIDB_AIRING_TRACKER_RESEARCH.md` — Comprehensive research document
+
+#### Files Changed
+| File | Changes |
+|------|---------|
+| `docs/ANIDB_AIRING_TRACKER_RESEARCH.md` | New research document |
+| `docs/ANIME_ROADMAP.md` | Added AniDB Airing Tracker to Phase D |
+| `docs/TODO.md` | Added AniDB research task as complete |
+| `docs/HANDOFF.md` | Added AniDB research status |
+
+---
+
+### 2026-06-21 - Phase 1F: JKAnime Search Helper
+
+**Status:** Complete
+
+#### Backend Service Layer
+- Created `src/NzbDrone.Core/JKAnime/` directory
+- Implemented `JKAnimeSearchResult` model with:
+  - Title, AlternativeTitle, Url, Slug, Type, Season, Year, Synopsis, Confidence
+- Implemented `IJKAnimeSearchService` interface
+- Implemented `JKAnimeSearchService` with:
+  - HTML parsing of JKAnime search results
+  - Confidence scoring for title matching
+  - Conservative timeout (10s) and user-agent identification
+  - Graceful error handling
+
+#### API Endpoint
+- Created `GET /api/v3/jkanime/search?term={title}`
+  - Returns JSON array of search results
+  - Results include title, URL, slug, confidence score
+- Created `GET /api/v3/jkanime/bestmatch?term={title}`
+  - Returns single best match or 404
+
+#### Frontend Integration
+- Updated `SeriesDetailsLinks.tsx` to include JKAnime link
+- JKAnime link appears in external links tooltip on series detail page
+- Link uses series title for search: `https://jkanime.net/buscar/{title}`
+
+#### Safety Measures
+- No media downloading or streaming extraction
+- No captcha/DRM/authentication bypass
+- Conservative request timeout (10s)
+- User-Agent identifies as Animarr
+- Graceful domain failure handling
+- Rate limiting via timeout
+
+#### Files Changed
+| File | Changes |
+|------|---------|
+| `src/NzbDrone.Core/JKAnime/JKAnimeSearchResult.cs` | New model |
+| `src/NzbDrone.Core/JKAnime/IJKAnimeSearchService.cs` | New interface |
+| `src/NzbDrone.Core/JKAnime/JKAnimeSearchService.cs` | New service |
+| `src/Sonarr.Api.V3/JKAnime/JKAnimeSearchController.cs` | New controller |
+| `src/Sonarr.Api.V3/JKAnime/JKAnimeSearchResource.cs` | New resource |
+| `frontend/src/Series/Details/SeriesDetailsLinks.tsx` | Added JKAnime link |
+| `frontend/src/Series/Details/SeriesDetails.tsx` | Pass title prop |
+
+---
+
 ### 2026-06-20 - Phase 1C: Distribution Assets and Cleanup
 
 **Status:** Complete

@@ -221,7 +221,22 @@ This roadmap transforms Animarr from a Western TV manager with anime support int
 
 **Goal:** Deep AniDB integration for maximum anime metadata quality.
 
-### D1. AniDB Metadata Provider
+**Research Status:** See [ANIDB_AIRING_TRACKER_RESEARCH.md](ANIDB_AIRING_TRACKER_RESEARCH.md) for detailed analysis.
+
+### D1. AniDB Airing Tracker (Research Complete)
+- **What:** Display next episode and airing schedule using AniDB data
+- **Why:** Anime users need to know when episodes air; TVDB has poor anime coverage
+- **How:**
+  - Implement AniDB UDP client with rate limiting
+  - Add `AnidbId` to Series model
+  - Create `AniDBAiringService` with calendar and episode lookup
+  - Add "Next Episode" card to series detail page
+- **Files:** New `AniDB/` service, `Series.cs`, calendar service, UI components
+- **Exit Criteria:** Users can view next airing episode for any AniDB-mapped series
+- **Complexity:** Medium
+- **Research:** [ANIDB_AIRING_TRACKER_RESEARCH.md](ANIDB_AIRING_TRACKER_RESEARCH.md)
+
+### D2. AniDB Metadata Provider
 - **What:** Full AniDB metadata provider using UDP API
 - **Why:** AniDB has the best anime metadata; TVDB is inadequate
 - **How:**

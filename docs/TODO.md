@@ -58,11 +58,26 @@
 
 ### Research Tasks
 
-- [ ] JKAnime integration research (non-code) — See `JKANIME_INTEGRATION_RESEARCH.md`
-  - [ ] Document JKAnime URL structure
-  - [ ] Map metadata fields to Animarr model
-  - [ ] Identify cross-reference opportunities with AniList/MAL
-  - [ ] Design integration API for future implementation
+- [x] JKAnime integration research (non-code) — See `JKANIME_INTEGRATION_RESEARCH.md`
+  - [x] Document JKAnime URL structure
+  - [x] Map metadata fields to Animarr model
+  - [x] Identify cross-reference opportunities with AniList/MAL
+  - [x] Design integration API for future implementation
+
+- [x] AniDB airing tracker research — See `ANIDB_AIRING_TRACKER_RESEARCH.md`
+  - [x] Evaluate AniDB HTTP and UDP APIs
+  - [x] Document rate limits and authentication
+  - [x] Design data model and mapping strategy
+  - [x] Plan UI location and implementation phases
+
+### Phase 1F - JKAnime Search Helper (Complete)
+
+- [x] Create backend search service
+- [x] Create API endpoint `/api/v3/jkanime/search`
+- [x] Add JKAnime link to series detail page
+- [ ] Persist JKAnime URLs in series metadata (future)
+- [ ] Add manual search UI (future)
+- [ ] Display match confidence (future)
 
 ## Priority: Low
 

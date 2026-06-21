@@ -755,6 +755,7 @@ function SeriesDetails({ seriesId }: SeriesDetailsProps) {
                         tvMazeId={tvMazeId}
                         imdbId={imdbId}
                         tmdbId={tmdbId}
+                        title={title}
                       />
                     }
                     kind={kinds.INVERSE}

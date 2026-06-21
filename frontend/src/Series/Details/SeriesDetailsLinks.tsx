@@ -9,7 +9,7 @@ import styles from './SeriesDetailsLinks.css';
 
 type SeriesDetailsLinksProps = Pick<
   Series,
-  'tvdbId' | 'tvMazeId' | 'imdbId' | 'tmdbId'
+  'tvdbId' | 'tvMazeId' | 'imdbId' | 'tmdbId' | 'title'
 >;
 
 interface SeriesDetailsLink {
@@ -19,7 +19,7 @@ interface SeriesDetailsLink {
 }
 
 function SeriesDetailsLinks(props: SeriesDetailsLinksProps) {
-  const { tvdbId, tvMazeId, imdbId, tmdbId } = props;
+  const { tvdbId, tvMazeId, imdbId, tmdbId, title } = props;
 
   const links = useMemo(() => {
     const validLinks: SeriesDetailsLink[] = [];
@@ -66,10 +66,19 @@ function SeriesDetailsLinks(props: SeriesDetailsLinksProps) {
       });
     }
 
+    // Add JKAnime link using series title for search
+    if (title) {
+      const encodedTitle = encodeURIComponent(title);
+      validLinks.push({
+        name: 'JKAnime',
+        url: `https://jkanime.net/buscar/${encodedTitle}`,
+      });
+    }
+
     return validLinks.sort(
       (a, b) => Number(!a.externalId) - Number(!b.externalId)
     );
-  }, [tvdbId, tvMazeId, imdbId, tmdbId]);
+  }, [tvdbId, tvMazeId, imdbId, tmdbId, title]);
 
   return (
     <div className={styles.links}>
