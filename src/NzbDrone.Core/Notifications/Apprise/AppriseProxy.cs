@@ -89,7 +89,7 @@ namespace NzbDrone.Core.Notifications.Apprise
 
         public ValidationFailure Test(AppriseSettings settings)
         {
-            const string title = "Sonarr - Test Notification";
+            const string title = "Animarr - Test Notification";
             const string body = "Success! You have properly configured your apprise notification settings.";
             const string posterUrl = "https://raw.githubusercontent.com/Sonarr/Sonarr/develop/Logo/128.png";
 

@@ -43,10 +43,10 @@ namespace Sonarr.Api.V3.Calendar
             var allSeries = _seriesService.GetAllSeries();
             var calendar = new Ical.Net.Calendar
             {
-                ProductId = "-//sonarr.tv//Sonarr//EN"
+                ProductId = "-//animarr.tv//Animarr//EN"
             };
 
-            var calendarName = "Sonarr TV Schedule";
+            var calendarName = "Animarr TV Schedule";
             calendar.AddProperty(new CalendarProperty("NAME", calendarName));
             calendar.AddProperty(new CalendarProperty("X-WR-CALNAME", calendarName));
 

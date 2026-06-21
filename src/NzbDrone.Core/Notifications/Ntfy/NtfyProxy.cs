@@ -72,9 +72,9 @@ namespace NzbDrone.Core.Notifications.Ntfy
         {
             try
             {
-                const string title = "Sonarr - Test Notification";
+                const string title = "Animarr - Test Notification";
 
-                const string body = "This is a test message from Sonarr";
+                const string body = "This is a test message from Animarr";
 
                 SendNotification(title, body, settings);
             }

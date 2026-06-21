@@ -48,7 +48,7 @@ namespace NzbDrone.Host
         {
             try
             {
-                Logger.Info("Starting Sonarr - {0} - Version {1}",
+                Logger.Info("Starting Animarr - {0} - Version {1}",
                             Environment.ProcessPath,
                             Assembly.GetExecutingAssembly().GetName().Version);
 
@@ -66,7 +66,7 @@ namespace NzbDrone.Host
 
                 RunHostUntilShutdown(args, startupContext, appMode, trayCallback);
 
-                Logger.Info("Sonarr has shut down completely");
+                Logger.Info("Animarr has shut down completely");
             }
             catch (InvalidConfigFileException ex)
             {

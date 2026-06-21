@@ -89,7 +89,7 @@ namespace NzbDrone.Core.Notifications.Gotify
                 const string title = "Test Notification";
 
                 var sb = new StringBuilder();
-                sb.AppendLine("This is a test message from Sonarr");
+                sb.AppendLine("This is a test message from Animarr");
 
                 var payload = new GotifyMessage
                 {
@@ -110,8 +110,8 @@ namespace NzbDrone.Core.Notifications.Gotify
                     isMarkdown = true;
 
                     sb.AppendLine("");
-                    sb.AppendLine("[Sonarr.tv](https://sonarr.tv)");
-                    payload.SetClickUrl("https://sonarr.tv");
+                    sb.AppendLine("[Animarr](https://github.com/LeoSanchezR/Animarr)");
+                    payload.SetClickUrl("https://github.com/LeoSanchezR/Animarr");
                 }
 
                 payload.Message = sb.ToString();

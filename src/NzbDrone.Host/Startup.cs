@@ -118,20 +118,20 @@ namespace NzbDrone.Host
                 c.SwaggerDoc("v3", new OpenApiInfo
                 {
                     Version = "3.0.0",
-                    Title = "Sonarr",
-                    Description = "Sonarr API docs - The v3 API docs apply to both v3 and v4 versions of Sonarr. Some functionality may only be available in v4 of the Sonarr application.",
+                    Title = "Animarr",
+                    Description = "Animarr API docs - The v3 API docs apply to both v3 and v4 versions of Animarr. Some functionality may only be available in v4 of the Animarr application.",
                     License = new OpenApiLicense
                     {
                         Name = "GPL-3.0",
-                        Url = new Uri("https://github.com/Sonarr/Sonarr/blob/develop/LICENSE")
+                        Url = new Uri("https://github.com/LeoSanchezR/Animarr/blob/develop/LICENSE")
                     }
                 });
 
                 c.SwaggerDoc("v5", new OpenApiInfo
                 {
                     Version = "5.0.0",
-                    Title = "Sonarr",
-                    Description = "Sonarr API docs - The v5 API docs apply to Sonarr v5 only.",
+                    Title = "Animarr",
+                    Description = "Animarr API docs - The v5 API docs apply to Animarr v5 only.",
                     License = new OpenApiLicense
                     {
                         Name = "GPL-3.0",
