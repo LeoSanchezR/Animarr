@@ -66,12 +66,10 @@ function SeriesDetailsLinks(props: SeriesDetailsLinksProps) {
       });
     }
 
-    // Add JKAnime link using series title for search
     if (title) {
-      const encodedTitle = encodeURIComponent(title);
       validLinks.push({
         name: 'JKAnime',
-        url: `https://jkanime.net/buscar/${encodedTitle}`,
+        url: `https://jkanime.net/buscar/${encodeURIComponent(title)}`,
       });
     }
 
