@@ -52,8 +52,17 @@
 
 ### Distribution
 
-- [ ] Update Docker configurations
+- [x] Update Docker configurations
+- [x] TrueNAS port planning (Sonarr=30113, Animarr=30114)
 - [ ] Test on multiple platforms
+
+### Research Tasks
+
+- [ ] JKAnime integration research (non-code) — See `JKANIME_INTEGRATION_RESEARCH.md`
+  - [ ] Document JKAnime URL structure
+  - [ ] Map metadata fields to Animarr model
+  - [ ] Identify cross-reference opportunities with AniList/MAL
+  - [ ] Design integration API for future implementation
 
 ## Priority: Low
 

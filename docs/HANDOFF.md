@@ -51,6 +51,7 @@
 33. ✅ Docker: Image `animarr:local` built (aspnet:10.0 base), container runs successfully
 34. ✅ Docker: All 12 icons load, logo.svg serves, title="Animarr"
 35. ✅ Fixed `Sonarr.Console.csproj` ApplicationIcon → `Animarr.ico`
+36. ✅ TrueNAS port planning: Sonarr=30113, Animarr=30114 (recommended)
 
 ## What Has NOT Been Done
 

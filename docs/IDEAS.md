@@ -7,6 +7,7 @@
 - AniList GraphQL API integration
 - Kitsu API integration
 - Anime-Planet integration
+- **JKAnime Spanish title discovery** — Search/read-only metadata from jkanime.net for Spanish title aliases, season detection, and type classification. No media downloading. See `JKANIME_INTEGRATION_RESEARCH.md`.
 
 ### UI Concepts
 - Anime season calendar (Japanese broadcast schedule)

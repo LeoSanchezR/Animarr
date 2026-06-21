@@ -113,12 +113,38 @@ services:
 
 ## TrueNAS Deployment Notes
 
+### Port Configuration
+
+When deploying Animarr alongside Sonarr on TrueNAS, the ports must not conflict:
+
+| Service | Internal Container Port | TrueNAS Host Port | Notes |
+|---------|------------------------|-------------------|-------|
+| **Sonarr** | 8989 | 30113 | Existing instance |
+| **Animarr** | 8989 | **30114** | Recommended default |
+
+- **Internal port (8989):** The application always listens on 8989 inside the container. This is configurable via `Port` in `config.xml` but should remain 8989 for simplicity.
+- **External/Host port (30114):** Map to 30114 on the TrueNAS host to avoid conflicting with Sonarr's 30113.
+- **Docker EXPOSE:** The Dockerfile exposes 8989 internally; the host mapping is configured at runtime.
+
 ### Considerations
 
-1. **Storage:** Map `/data` volume for configuration
+1. **Storage:** Map `/config` volume for configuration
 2. **Network:** Host networking recommended for download client access
-3. **Permissions:** Run as non-root user (sonarr:sonarr → animarr:animarr)
+3. **Permissions:** Run as non-root user (animarr:animarr)
 4. **Updates:** Disable automatic updates initially
+5. **Port conflicts:** Animarr (30114) must not share a port with Sonarr (30113)
+
+### Docker Run Example
+
+```bash
+docker run -d \
+  --name animarr \
+  -p 30114:8989 \
+  -v /path/to/config:/config \
+  -v /path/to/tv:/tv \
+  -v /path/to/downloads:/downloads \
+  animarr:local
+```
 
 ### Docker Compose Example
 
@@ -126,16 +152,31 @@ services:
 version: '3.8'
 services:
   animarr:
-    image: animarr:latest
+    image: animarr:local
     container_name: animarr
     volumes:
       - /path/to/config:/config
       - /path/to/tv:/tv
       - /path/to/downloads:/downloads
     ports:
-      - 8989:8989
+      - 30114:8989
     restart: unless-stopped
 ```
+
+### TrueNAS Custom App (Docker-based)
+
+In TrueNAS SCALE, create a custom Docker app with:
+
+| Setting | Value |
+|---------|-------|
+| Image | `animarr:local` |
+| Container Port | `8989` |
+| Host Port | `30114` |
+| Volume (config) | `/config` → host path |
+| Volume (tv) | `/tv` → host path |
+| Volume (downloads) | `/downloads` → host path |
+
+Access Animarr at: `http://<truenas-ip>:30114`
 
 ## Output Structure
 
