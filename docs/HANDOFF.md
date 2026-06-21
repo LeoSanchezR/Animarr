@@ -5,7 +5,7 @@
 **Repository:** https://github.com/LeoSanchezR/Animarr
 **Branch:** v5-develop
 **Base:** Sonarr v4.0 (forked from Sonarr/Sonarr)
-**Status:** Phase 1C complete - Distribution assets and cleanup
+**Status:** Phase 1C complete - Distribution assets and cleanup, Docker deployment verified
 
 ## What Has Been Done
 
@@ -44,6 +44,14 @@
 28. ✅ Updated documentation files
 29. ✅ Build verified successfully
 
+### Local Deployment Testing (Complete)
+30. ✅ .NET SDK 10.0.301 installed and backend builds successfully
+31. ✅ Frontend builds with `npx webpack` (no global yarn needed)
+32. ✅ Non-Docker: Animarr UI loads at http://localhost:8989 with full branding
+33. ✅ Docker: Image `animarr:local` built (aspnet:10.0 base), container runs successfully
+34. ✅ Docker: All 12 icons load, logo.svg serves, title="Animarr"
+35. ✅ Fixed `Sonarr.Console.csproj` ApplicationIcon → `Animarr.ico`
+
 ## What Has NOT Been Done
 
 ### Phase 2: Backend Branding (Future)
@@ -60,6 +68,8 @@
 2. `window.Sonarr` global object used in 40+ frontend files
 3. 45 localization files contain "Sonarr" in key names
 4. Database files named `sonarr.db`
+5. `manifest.json` has `__INSTANCE_NAME__` template variable resolved by backend to "Sonarr"
+6. `window.Sonarr` in index.ejs still references Sonarr (Phase 2)
 
 ## Color Palette (Implemented)
 

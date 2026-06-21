@@ -62,20 +62,54 @@ yarn stylelint
 | `dotnet build src/Sonarr.sln` | Build backend |
 | `dotnet test src/Sonarr.sln` | Run backend tests |
 
-## Docker Notes
+## Docker Deployment (Verified)
 
 ### Build Image
 
 ```bash
-cd distribution/docker-build
-docker build -t animarr .
+# Build backend first
+dotnet build src/Sonarr.sln -c Release
+# Copy frontend output into backend output
+xcopy /E /Y _output\UI _output\net10.0\UI
+
+# Build Docker image (from repo root)
+docker build -t animarr:local .
 ```
 
-### Test Configuration
+### Run Container
 
-Docker test configs located in `docker/tests/`:
-- `mono/sonarr/Dockerfile` - Mono-based test
-- `mono/complete/Dockerfile` - Complete test
+```bash
+docker run -d \
+  --name animarr \
+  -p 8989:8989 \
+  -v /path/to/config:/config \
+  animarr:local
+```
+
+### Notes
+
+- Uses `mcr.microsoft.com/dotnet/aspnet:10.0` (full, not chiseled)
+- `libsqlite3-0` installed in image (required by System.Data.SQLite)
+- First boot runs ~250 database migrations (~3 minutes)
+- UI serves at http://localhost:8989
+- Data persists in `/config` volume
+
+### Docker Compose Example
+
+```yaml
+version: '3.8'
+services:
+  animarr:
+    image: animarr:local
+    container_name: animarr
+    volumes:
+      - /path/to/config:/config
+      - /path/to/tv:/tv
+      - /path/to/downloads:/downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+```
 
 ## TrueNAS Deployment Notes
 
