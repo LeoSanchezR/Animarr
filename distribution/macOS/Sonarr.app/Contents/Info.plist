@@ -13,13 +13,13 @@
 	<key>CFBundleExecutable</key>
 	<string>Sonarr</string>
 	<key>CFBundleIconFile</key>
-	<string>sonarr.icns</string>
+	<string>animarr.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.osx.sonarr.tv</string>
+	<string>com.osx.animarr.tv</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Sonarr</string>
+	<string>Animarr</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

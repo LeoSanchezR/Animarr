@@ -1,6 +1,6 @@
 # How to Contribute
 
-We're always looking for people to help make Sonarr even better, there are a number of ways to contribute.
+We're always looking for people to help make Animarr even better, there are a number of ways to contribute.
 
 ## Documentation
 
@@ -18,7 +18,7 @@ Setup guides, [FAQ](https://wiki.servarr.com/sonarr/faq), the more information w
 
 ### Getting started
 
-1. Fork Sonarr
+1. Fork Animarr
 2. Clone the repository into your development machine. [_info_](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
 3. Install the required Node Packages `yarn install`
 4. Start webpack to monitor your dev environment for any frontend changes that need post processing using `yarn start` command.

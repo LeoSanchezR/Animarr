@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Chrome, Opera, and Firefox OS -->
-    <meta name="theme-color" content="#3a3f51" />
+    <meta name="theme-color" content="#18181B" />
     <!-- Windows Phone -->
-    <meta name="msapplication-navbutton-color" content="#3a3f51" />
+    <meta name="msapplication-navbutton-color" content="#18181B" />
     <!-- Android/Apple Phone -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="format-detection" content="telephone=no">
 
-    <meta name="description" content="Sonarr" />
+    <meta name="description" content="Animarr" />
 
     <link
       rel="apple-touch-icon"
@@ -37,7 +37,7 @@
     <link
       rel="mask-icon"
       href="/Content/Images/Icons/safari-pinned-tab.svg"
-      color="#00ccff"
+      color="#D946EF"
     />
     <link
       rel="shortcut icon"
@@ -62,7 +62,7 @@
       var finalTheme =
         theme === 'dark' || (theme === 'auto' && defaultDark) ? 'dark' : 'light';
 
-      document.documentElement.style.setProperty('--pageBackground', finalTheme === 'dark' ? '#202020' : '#f5f7fa');
+      document.documentElement.style.setProperty('--pageBackground', finalTheme === 'dark' ? '#18181B' : '#f5f7fa');
     </script>
 
     __MINI_PROFILER__
@@ -70,7 +70,7 @@
     <% for (key in htmlWebpackPlugin.files.js) { %><script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[key] %>" data-no-hash></script><% } %>
     <% for (key in htmlWebpackPlugin.files.css) { %><link href="<%= htmlWebpackPlugin.files.css[key] %>" rel="stylesheet"></link><% } %>
 
-    <title>Sonarr</title>
+    <title>Animarr</title>
 
     <!--
       The super basic styling for .root  will live here,

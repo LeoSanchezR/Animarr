@@ -46,7 +46,7 @@ function PageHeader() {
           <img
             className={styles.logo}
             src={`${window.Sonarr.urlBase}/Content/Images/logo.svg`}
-            alt="Sonarr Logo"
+            alt="Animarr Logo"
           />
         </Link>
       </div>

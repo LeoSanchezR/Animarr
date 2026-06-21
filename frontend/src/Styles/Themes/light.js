@@ -1,13 +1,15 @@
-const sonarrBlue = '#35c5f4';
-const sonarrAlternateBlue = '#2193b5';
+const animarrMagenta = '#D946EF';
+const animarrPurple = '#A855F7';
+const animarrPink = '#EC4899';
+const animarrHighlight = '#F472B6';
 const darkGray = '#888';
 const mediumGray = '#999';
 const gray = '#adadad';
 const black = '#000';
 const white = '#fff';
 const offWhite = '#f5f7fa';
-const purple = '#7a43b6';
-const pink = '#ff69b4';
+const purple = '#A855F7';
+const pink = '#EC4899';
 const lightGray = '#ddd';
 const defaultColor = '#333';
 
@@ -19,15 +21,15 @@ module.exports = {
   black,
   white,
   offWhite,
-  primaryColor: '#5d9cec',
+  primaryColor: animarrMagenta,
   selectedColor: '#f9be03',
   successColor: '#27c24c',
   dangerColor: '#f05050',
   warningColor: '#ffa500',
-  infoColor: sonarrBlue,
+  infoColor: animarrPurple,
   purple,
   pink,
-  sonarrBlue,
+  animarrMagenta,
   helpTextColor: '#909293',
   darkGray,
   gray,
@@ -36,11 +38,11 @@ module.exports = {
 
   // Theme Colors
 
-  themeBlue: sonarrBlue,
-  themeAlternateBlue: sonarrAlternateBlue,
+  themeBlue: animarrMagenta,
+  themeAlternateBlue: animarrPurple,
   themeRed: '#c4273c',
-  themeDarkColor: '#3a3f51',
-  themeLightColor: '#4f566f',
+  themeDarkColor: '#18181B',
+  themeLightColor: '#27272A',
   pageBackground: '#f5f7fa',
   pageFooterBackground: '#f1f1f1',
 
@@ -55,31 +57,31 @@ module.exports = {
 
   // Links
   defaultLinkHoverColor: '#fff',
-  linkColor: '#5d9cec',
-  linkHoverColor: '#1b72e2',
+  linkColor: animarrMagenta,
+  linkHoverColor: animarrPurple,
 
   // Header
-  pageHeaderBackgroundColor: sonarrAlternateBlue,
+  pageHeaderBackgroundColor: animarrPurple,
 
   // Sidebar
 
   sidebarColor: '#e1e2e3',
-  sidebarBackgroundColor: '#3a3f51',
-  sidebarActiveBackgroundColor: '#252833',
+  sidebarBackgroundColor: '#18181B',
+  sidebarActiveBackgroundColor: '#27272A',
 
   // Toolbar
   toolbarColor: '#e1e2e3',
-  toolbarBackgroundColor: '#4f566f',
-  toolbarMenuItemBackgroundColor: '#454b60',
-  toolbarMenuItemHoverBackgroundColor: '#3a3f51',
+  toolbarBackgroundColor: '#27272A',
+  toolbarMenuItemBackgroundColor: '#3F3F46',
+  toolbarMenuItemHoverBackgroundColor: '#18181B',
   toolbarLabelColor: '#8895aa',
 
   // Accents
   borderColor: '#e5e5e5',
   inputBorderColor: '#dde6e9',
   inputBoxShadowColor: 'rgba(0, 0, 0, 0.075)',
-  inputFocusBorderColor: '#66afe9',
-  inputFocusBoxShadowColor: 'rgba(102, 175, 233, 0.6)',
+  inputFocusBorderColor: animarrMagenta,
+  inputFocusBoxShadowColor: 'rgba(217, 70, 239, 0.3)',
   inputErrorBorderColor: '#f05050',
   inputErrorBoxShadowColor: 'rgba(240, 80, 80, 0.6)',
   inputWarningBorderColor: '#ffa500',
@@ -88,7 +90,7 @@ module.exports = {
   colorImpairedGradientDark: '#f4f5f6',
   colorImpairedDangerGradient: '#d84848',
   colorImpairedWarningGradient: '#e59400',
-  colorImpairedPrimaryGradient: '#538cd4',
+  colorImpairedPrimaryGradient: animarrMagenta,
   colorImpairedGrayGradient: '#9b9b9b  ',
 
   //
@@ -100,10 +102,10 @@ module.exports = {
   defaultHoverBackgroundColor: '#f5f5f5',
   defaultHoverBorderColor: '#d6d6d6',
 
-  primaryBackgroundColor: '#5d9cec',
-  primaryBorderColor: '#5899eb',
-  primaryHoverBackgroundColor: '#4b91ea',
-  primaryHoverBorderColor: '#3483e7',
+  primaryBackgroundColor: animarrMagenta,
+  primaryBorderColor: '#C026D3',
+  primaryHoverBackgroundColor: animarrPurple,
+  primaryHoverBorderColor: '#9333EA',
 
   successBackgroundColor: '#27c24c',
   successBorderColor: '#26be4a',
@@ -140,8 +142,8 @@ module.exports = {
   //
   // Toolbar
 
-  toobarButtonHoverColor: '#35c5f4',
-  toobarButtonSelectedColor: '#35c5f4',
+  toobarButtonHoverColor: animarrMagenta,
+  toobarButtonSelectedColor: animarrMagenta,
 
   //
   // Scroller
@@ -179,7 +181,7 @@ module.exports = {
   //
   // Slider
 
-  sliderAccentColor: '#5d9cec',
+  sliderAccentColor: animarrMagenta,
 
   //
   // Form
@@ -201,8 +203,8 @@ module.exports = {
   popoverShadowColor: 'rgba(0, 0, 0, 0.2)',
   popoverArrowBorderColor: '#fff',
 
-  popoverTitleBackgroundInverseColor: '#3a3f51',
-  popoverTitleBorderInverseColor: '#4f566f',
+  popoverTitleBackgroundInverseColor: '#18181B',
+  popoverTitleBorderInverseColor: '#27272A',
   popoverShadowInverseColor: 'rgba(0, 0, 0, 0.2)',
   popoverArrowBorderInverseColor: 'rgba(58, 63, 81, 0.75)',
 

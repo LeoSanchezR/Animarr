@@ -1,12 +1,16 @@
-const sonarrBlue = '#35c5f4';
+const animarrMagenta = '#D946EF';
+const animarrPurple = '#A855F7';
+const animarrPink = '#EC4899';
+const animarrHighlight = '#F472B6';
+const animarrDarkBg = '#18181B';
 const darkGray = '#888';
 const mediumGray = '#999';
 const gray = '#adadad';
 const black = '#000';
 const white = '#fff';
 const offWhite = '#f5f7fa';
-const purple = '#7a43b6';
-const pink = '#ff69b4';
+const purple = '#A855F7';
+const pink = '#EC4899';
 const lightGray = '#ddd';
 
 module.exports = {
@@ -17,15 +21,15 @@ module.exports = {
   black,
   white,
   offWhite,
-  primaryColor: '#5d9cec',
+  primaryColor: animarrMagenta,
   selectedColor: '#f9be03',
   successColor: '#00853d',
   dangerColor: '#f05050',
   warningColor: '#ffa500',
-  infoColor: '#5d9cec',
+  infoColor: animarrPurple,
   purple,
   pink,
-  sonarrBlue,
+  animarrMagenta,
   helpTextColor: '#909293',
   darkGray,
   gray,
@@ -34,12 +38,12 @@ module.exports = {
 
   // Theme Colors
 
-  themeBlue: sonarrBlue,
-  themeAlternateBlue: '#2193b5',
+  themeBlue: animarrMagenta,
+  themeAlternateBlue: animarrPurple,
   themeRed: '#c4273c',
-  themeDarkColor: '#494949',
-  themeLightColor: '#595959',
-  pageBackground: '#202020',
+  themeDarkColor: '#27272A',
+  themeLightColor: '#3F3F46',
+  pageBackground: animarrDarkBg,
   pageFooterBackground: 'rgba(0, 0, 0, .25)',
 
   torrentColor: '#00853d',
@@ -53,31 +57,31 @@ module.exports = {
 
   // Links
   defaultLinkHoverColor: '#fff',
-  linkColor: '#5d9cec',
-  linkHoverColor: '#1b72e2',
+  linkColor: animarrMagenta,
+  linkHoverColor: animarrPurple,
 
   // Header
-  pageHeaderBackgroundColor: '#2a2a2a',
+  pageHeaderBackgroundColor: '#27272A',
 
   // Sidebar
 
   sidebarColor: '#e1e2e3',
-  sidebarBackgroundColor: '#2a2a2a',
-  sidebarActiveBackgroundColor: '#333333',
+  sidebarBackgroundColor: '#27272A',
+  sidebarActiveBackgroundColor: '#3F3F46',
 
   // Toolbar
   toolbarColor: '#e1e2e3',
-  toolbarBackgroundColor: '#262626',
-  toolbarMenuItemBackgroundColor: '#333',
-  toolbarMenuItemHoverBackgroundColor: '#414141',
+  toolbarBackgroundColor: '#1F1F23',
+  toolbarMenuItemBackgroundColor: '#3F3F46',
+  toolbarMenuItemHoverBackgroundColor: '#52525B',
   toolbarLabelColor: '#e1e2e3',
 
   // Accents
   borderColor: '#858585',
-  inputBorderColor: '#dde6e9',
+  inputBorderColor: '#3F3F46',
   inputBoxShadowColor: 'rgba(0, 0, 0, 0.075)',
-  inputFocusBorderColor: '#66afe9',
-  inputFocusBoxShadowColor: 'rgba(102, 175, 233, 0.6)',
+  inputFocusBorderColor: animarrMagenta,
+  inputFocusBoxShadowColor: 'rgba(217, 70, 239, 0.3)',
   inputErrorBorderColor: '#f05050',
   inputErrorBoxShadowColor: 'rgba(240, 80, 80, 0.6)',
   inputWarningBorderColor: '#ffa500',
@@ -86,22 +90,22 @@ module.exports = {
   colorImpairedGradientDark: '#424242',
   colorImpairedDangerGradient: '#d84848',
   colorImpairedWarningGradient: '#e59400',
-  colorImpairedPrimaryGradient: '#538cd4',
+  colorImpairedPrimaryGradient: animarrMagenta,
   colorImpairedGrayGradient: '#9b9b9b',
 
   //
   // Buttons
 
   defaultButtonTextColor: '#eee',
-  defaultBackgroundColor: '#333',
-  defaultBorderColor: '#393f45',
-  defaultHoverBackgroundColor: '#444',
-  defaultHoverBorderColor: '#5a6265',
+  defaultBackgroundColor: '#3F3F46',
+  defaultBorderColor: '#52525B',
+  defaultHoverBackgroundColor: '#52525B',
+  defaultHoverBorderColor: '#71717A',
 
-  primaryBackgroundColor: '#5d9cec',
-  primaryBorderColor: '#5899eb',
-  primaryHoverBackgroundColor: '#4b91ea',
-  primaryHoverBorderColor: '#3483e7',
+  primaryBackgroundColor: animarrMagenta,
+  primaryBorderColor: '#C026D3',
+  primaryHoverBackgroundColor: animarrPurple,
+  primaryHoverBorderColor: '#9333EA',
 
   successBackgroundColor: '#27c24c',
   successBorderColor: '#26be4a',
@@ -126,20 +130,20 @@ module.exports = {
   // Modal
 
   modalBackdropBackgroundColor: 'rgba(0, 0, 0, 0.6)',
-  modalBackgroundColor: '#2a2a2a',
+  modalBackgroundColor: '#27272A',
   modalCloseButtonHoverColor: '#888',
 
   //
   // Menu
   menuItemColor: '#e1e2e3',
-  menuItemHoverColor: sonarrBlue,
-  menuItemHoverBackgroundColor: '#606060',
+  menuItemHoverColor: animarrMagenta,
+  menuItemHoverBackgroundColor: '#52525B',
 
   //
   // Toolbar
 
-  toobarButtonHoverColor: sonarrBlue,
-  toobarButtonSelectedColor: sonarrBlue,
+  toobarButtonHoverColor: animarrMagenta,
+  toobarButtonSelectedColor: animarrMagenta,
 
   //
   // Scroller
@@ -150,10 +154,10 @@ module.exports = {
   //
   // Card
 
-  cardBackgroundColor: '#333333',
+  cardBackgroundColor: '#3F3F46',
   cardShadowColor: '#111',
-  cardAlternateBackgroundColor: '#333333',
-  cardCenterBackgroundColor: '#2a2a2a',
+  cardAlternateBackgroundColor: '#3F3F46',
+  cardCenterBackgroundColor: '#27272A',
 
   //
   // Alert
@@ -177,13 +181,13 @@ module.exports = {
   //
   // Slider
 
-  sliderAccentColor: '#5d9cec',
+  sliderAccentColor: animarrMagenta,
 
   //
   // Form
 
-  inputBackgroundColor: '#333',
-  inputReadOnlyBackgroundColor: '#222',
+  inputBackgroundColor: '#3F3F46',
+  inputReadOnlyBackgroundColor: '#27272A',
   inputHoverBackgroundColor: 'rgba(255, 255, 255, 0.20)',
   inputSelectedBackgroundColor: 'rgba(255, 255, 255, 0.05)',
   advancedFormLabelColor: '#ff902b',
@@ -193,13 +197,13 @@ module.exports = {
   //
   // Popover
 
-  popoverTitleBackgroundColor: '#424242',
-  popoverTitleBorderColor: '#2a2a2a',
-  popoverBodyBackgroundColor: '#2a2a2a',
+  popoverTitleBackgroundColor: '#52525B',
+  popoverTitleBorderColor: '#27272A',
+  popoverBodyBackgroundColor: '#27272A',
   popoverShadowColor: 'rgba(0, 0, 0, 0.2)',
-  popoverArrowBorderColor: '#2a2a2a',
+  popoverArrowBorderColor: '#27272A',
 
-  popoverTitleBackgroundInverseColor: '#595959',
+  popoverTitleBackgroundInverseColor: '#3F3F46',
   popoverTitleBorderInverseColor: '#707070',
   popoverShadowInverseColor: 'rgba(0, 0, 0, 0.2)',
   popoverArrowBorderInverseColor: 'rgba(58, 63, 81, 0.75)',
@@ -207,9 +211,9 @@ module.exports = {
   //
   // Calendar
 
-  calendarTodayBackgroundColor: '#3e3e3e',
-  calendarBackgroundColor: '#2a2a2a',
-  calendarBorderColor: '#393f45',
+  calendarTodayBackgroundColor: '#3F3F46',
+  calendarBackgroundColor: '#27272A',
+  calendarBorderColor: '#52525B',
   calendarTextDim: '#eee',
   calendarTextDimAlternate: '#fff',
 
@@ -223,16 +227,16 @@ module.exports = {
   //
   // Series
 
-  addSeriesBackgroundColor: '#2a2a2a',
-  seriesBackgroundColor: '#2a2a2a',
-  searchIconContainerBackgroundColor: '#2b2b2b',
-  collapseButtonBackgroundColor: '#2a2a2a',
+  addSeriesBackgroundColor: '#27272A',
+  seriesBackgroundColor: '#27272A',
+  searchIconContainerBackgroundColor: '#1F1F23',
+  collapseButtonBackgroundColor: '#27272A',
 
   //
   // Season
 
-  seasonBackgroundColor: '#424242',
-  episodesBackgroundColor: '#2a2a2a',
+  seasonBackgroundColor: '#52525B',
+  episodesBackgroundColor: '#27272A',
 
   //
   // misc
@@ -240,5 +244,5 @@ module.exports = {
   progressBarFrontTextColor: white,
   progressBarBackTextColor: white,
   progressBarBackgroundColor: '#727070',
-  logEventsBackgroundColor: '#2a2a2a'
+  logEventsBackgroundColor: '#27272A'
 };

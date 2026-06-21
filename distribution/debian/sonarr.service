@@ -1,13 +1,13 @@
-# This file is owned by the sonarr package, DO NOT MODIFY MANUALLY
-# Instead use 'dpkg-reconfigure -plow sonarr' to modify User/Group/UMask/-data
-# Or use systemd built-in override functionality using 'systemctl edit sonarr'
+# This file is owned by the animarr package, DO NOT MODIFY MANUALLY
+# Instead use 'dpkg-reconfigure -plow animarr' to modify User/Group/UMask/-data
+# Or use systemd built-in override functionality using 'systemctl edit animarr'
 [Unit]
-Description=Sonarr Daemon
+Description=Animarr Daemon
 After=network.target
 
 [Service]
-User=sonarr
-Group=sonarr
+User=animarr
+Group=animarr
 UMask=002
 
 Type=simple

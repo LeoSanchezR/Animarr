@@ -1,11 +1,13 @@
-# <img width="24px" src="./Logo/256.png" alt="Sonarr"></img> Sonarr
+# <img width="24px" src="./Logo/256.png" alt="Animarr"></img> Animarr
 
 [![Translated](https://translate.servarr.com/widget/servarr/sonarr/svg-badge.svg)](https://translate.servarr.com/engage/servarr/)
 [![Backers on Open Collective](https://opencollective.com/Sonarr/backers/badge.svg)](#backers)
 [![Sponsors on Open Collective](https://opencollective.com/Sonarr/sponsors/badge.svg)](#sponsors)
 [![Mega Sponsors on Open Collective](https://opencollective.com/Sonarr/megasponsors/badge.svg)](#mega-sponsors)
 
-Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
+Animarr is an anime-focused media management fork of Sonarr. It can monitor multiple RSS feeds for new episodes of your favorite anime shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
+
+**Note:** This is a private/internal fork. Not affiliated with the upstream Sonarr project.
 
 ## Getting Started
 

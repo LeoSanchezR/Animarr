@@ -1,7 +1,7 @@
 {
-  "name": "sonarr",
+  "name": "animarr",
   "version": "4.0.0",
-  "description": "Sonarr is a PVR for Usenet and BitTorrent users",
+  "description": "Animarr - Anime-focused media management fork of Sonarr",
   "scripts": {
     "build": "webpack --config ./frontend/build/webpack.config.js",
     "prebuild": "yarn clean",
@@ -12,8 +12,8 @@
     "lint-fix": "yarn lint --fix",
     "stylelint": "stylelint \"frontend/**/*.css\" --config frontend/.stylelintrc"
   },
-  "repository": "https://github.com/Sonarr/Sonarr",
-  "author": "Team Sonarr",
+  "repository": "https://github.com/LeoSanchezR/Animarr",
+  "author": "Team Animarr",
   "license": "GPL-3.0",
   "readmeFilename": "readme.md",
   "main": "index.ts",
@@ -72,6 +72,7 @@
     "react-text-truncate": "0.19.0",
     "react-use-measure": "2.1.7",
     "react-window": "1.8.11",
+    "sharp": "^0.35.2",
     "stacktrace-js": "2.0.2",
     "typescript": "5.7.2",
     "use-debounce": "10.1.1",
