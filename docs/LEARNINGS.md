@@ -35,7 +35,12 @@
 ### 7. Docker Multi-Stage Build for .NET
 - **Problem:** Single-stage Dockerfile relied on pre-built artifacts from the host, but the assembly name mismatch caused runtime failure
 - **Root Cause:** The Dockerfile used `COPY _output/net10.0/ ./` which expected the build to happen outside Docker, but the DLL name differed between host (Windows) and container (Linux)
-- **Solution:** Multi-stage Dockerfile: build stage runs `dotnet build src/Sonarr.sln -c Release` inside Docker (Linux), ensuring correct assembly name. Runtime stage copies from build stage.
+- **Solution:** Multi-stage Dockerfile: build stage runs `dotnet build` inside Docker (Linux), ensuring correct assembly name. Runtime stage copies from build stage.
+
+### 8. .dockerignore Excludes Break Solution Build
+- **Problem:** `dotnet build src/Sonarr.sln -c Release` fails in Docker with MSB3202 (missing test project files)
+- **Root Cause:** `.dockerignore` excludes `src/*.Test` and `src/*.Integration.Test` to reduce build context size, but `Sonarr.sln` references those projects
+- **Solution:** Build only `src/NzbDrone.Console/Sonarr.Console.csproj` — the runtime entry point. It auto-resolves all runtime dependencies and skips test projects entirely
 
 ## Technical Discoveries
 

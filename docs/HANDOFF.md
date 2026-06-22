@@ -79,6 +79,12 @@
 53. ✅ Simplified workflow — removed redundant backend build/copy steps
 54. ✅ libsqlite3-0 retained in runtime image
 
+### Phase 1J: Docker Build Test Project Fix (Complete)
+55. ✅ Root cause: `.dockerignore` excludes test source files, but `Sonarr.sln` references them → MSB3202
+56. ✅ Changed build command from `src/Sonarr.sln` to `src/NzbDrone.Console/Sonarr.Console.csproj`
+57. ✅ Console csproj auto-resolves all runtime dependencies, skips test projects
+58. ✅ Verified: `AssemblyName=Sonarr` on Linux produces `Sonarr.dll`
+
 ## What Has NOT Been Done
 
 ### Phase 2: Backend Branding (Future)

@@ -2,6 +2,49 @@
 
 ## Chronological Development Log
 
+### 2026-06-22 - Fix: Docker build missing test projects (MSB3202)
+
+**Status:** Complete
+
+#### Problem
+GitHub Docker Build fails during:
+```
+RUN dotnet build src/Sonarr.sln -c Release
+```
+Error: `MSB3202: project file not found: src/NzbDrone.*.Test/Sonarr.*.Test.csproj`
+
+#### Root Cause
+`.dockerignore` excludes `src/*.Test` and `src/*.Integration.Test`, but `Sonarr.sln` references those test projects. The `dotnet build` of the solution fails because the excluded project files are missing from the Docker build context.
+
+#### Fix
+Changed Dockerfile build command from:
+```
+dotnet build src/Sonarr.sln -c Release
+```
+to:
+```
+dotnet build src/NzbDrone.Console/Sonarr.Console.csproj -c Release
+```
+
+This builds only the runtime console project and its dependencies, skipping all test projects entirely.
+
+#### Key Facts
+- `src/NzbDrone.Console/Sonarr.Console.csproj` is the entry point for the application
+- On non-Windows (Linux/Docker), `AssemblyName` is set to `Sonarr` (csproj line 8-9), producing `Sonarr.dll`
+- `dotnet build` auto-resolves all runtime dependencies (Host, Core, Common, SignalR, etc.)
+- Output goes to `_output/net10.0/` (configured in `src/Directory.Build.props`)
+- Frontend is built separately in the GitHub workflow and copied from build context
+
+#### Files Changed
+| File | Changes |
+|------|---------|
+| `Dockerfile` | Build command: `Sonarr.sln` → `Sonarr.Console.csproj` |
+| `docs/CHANGES.md` | This entry |
+| `docs/HANDOFF.md` | Phase 1J |
+| `docs/LEARNINGS.md` | Lesson 8 |
+
+---
+
 ### 2026-06-21 - Fix: Docker Image Runtime Entrypoint (TrueNAS crash)
 
 **Status:** Complete
