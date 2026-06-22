@@ -42,6 +42,11 @@
 - **Root Cause:** `.dockerignore` excludes `src/*.Test` and `src/*.Integration.Test` to reduce build context size, but `Sonarr.sln` references those projects
 - **Solution:** Build only `src/NzbDrone.Console/Sonarr.Console.csproj` — the runtime entry point. It auto-resolves all runtime dependencies and skips test projects entirely
 
+### 9. StyleCop SA1200 in Docker Build
+- **Problem:** 557 SA1200 errors when building inside Docker — Sonarr source has `using` directives outside namespace declarations, and `TreatWarningsAsErrors` is true in `Directory.Build.props`
+- **Root Cause:** Sonarr's legacy code style places usings at file top; modern StyleCop/IDE rules require them inside namespaces. This is a pre-existing code style issue, not a compilation error.
+- **Solution:** Disable analyzers during Docker build with `-p:RunAnalyzers=false -p:RunAnalyzersDuringBuild=false -p:TreatWarningsAsErrors=false -p:EnforceCodeStyleInBuild=false`
+
 ## Technical Discoveries
 
 ### 1. Theme System

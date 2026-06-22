@@ -1,7 +1,11 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 COPY . .
-RUN dotnet build src/NzbDrone.Console/Sonarr.Console.csproj -c Release
+RUN dotnet build src/NzbDrone.Console/Sonarr.Console.csproj -c Release \
+  -p:RunAnalyzers=false \
+  -p:RunAnalyzersDuringBuild=false \
+  -p:TreatWarningsAsErrors=false \
+  -p:EnforceCodeStyleInBuild=false
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
 
