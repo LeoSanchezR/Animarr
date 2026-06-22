@@ -115,12 +115,10 @@ services:
 ### Local Build
 
 ```bash
-# Build backend first
-dotnet build src/Sonarr.sln -c Release
-# Copy frontend output into backend output
-xcopy /E /Y _output\UI _output\net10.0\UI
+# Build frontend first (needed for Docker context)
+yarn build --env production
 
-# Build Docker image (from repo root)
+# Build Docker image (multi-stage: builds backend inside Docker)
 docker build -t animarr:local .
 ```
 

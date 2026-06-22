@@ -72,6 +72,13 @@
 48. ✅ Disabled upstream `build_v5.yml` push/PR triggers — now `workflow_dispatch` only
 49. ✅ Validated: `dotnet build src/Sonarr.sln -c Release` succeeds, output at `_output/net10.0/`
 
+### Phase 1I: Docker Image Runtime Entrypoint Fix (Complete)
+50. ✅ Root cause: `ENTRYPOINT` referenced `Sonarr.Console.dll` but Linux assembly name is `Sonarr` (csproj condition)
+51. ✅ Converted Dockerfile to multi-stage: build stage runs `dotnet build`, runtime stage copies output
+52. ✅ Fixed ENTRYPOINT to `dotnet Sonarr.dll`
+53. ✅ Simplified workflow — removed redundant backend build/copy steps
+54. ✅ libsqlite3-0 retained in runtime image
+
 ## What Has NOT Been Done
 
 ### Phase 2: Backend Branding (Future)

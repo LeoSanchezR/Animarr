@@ -2,6 +2,51 @@
 
 ## Chronological Development Log
 
+### 2026-06-21 - Fix: Docker Image Runtime Entrypoint (TrueNAS crash)
+
+**Status:** Complete
+
+#### Problem
+TrueNAS container stops immediately with:
+```
+The application 'Sonarr.Console.dll' does not exist or is not a managed .dll or .exe.
+No .NET SDKs were found.
+```
+
+#### Root Cause
+Two issues compounding:
+
+1. **Wrong DLL name in ENTRYPOINT:** `dotnet Sonarr.Console.dll` but `Sonarr.Console.csproj` conditionally sets `AssemblyName=Sonarr` on non-Windows platforms (line 8-9). On Linux (Docker), the output is `Sonarr.dll`.
+
+2. **No build stage in Dockerfile:** The old Dockerfile used `COPY _output/net10.0/ ./` which relied on the workflow pre-building and placing artifacts in the build context. This is fragile and didn't match the actual assembly name on Linux.
+
+#### Changes
+1. **Dockerfile** — converted to multi-stage build:
+   - Build stage: `mcr.microsoft.com/dotnet/sdk:10.0`, runs `dotnet build src/Sonarr.sln -c Release`
+   - Runtime stage: `mcr.microsoft.com/dotnet/aspnet:10.0`, copies from build stage
+   - ENTRYPOINT corrected to `dotnet Sonarr.dll`
+   - UI copied from build context (produced by workflow frontend build)
+
+2. **docker.yml** — removed redundant `Build backend` and `Copy UI into backend output` steps (now handled by Dockerfile build stage)
+
+#### Key Facts
+- `Directory.Build.props` auto-detects platform: `RuntimeIdentifier = linux-x64` on Linux
+- `Sonarr.Console.csproj` line 8-9: `AssemblyName=Sonarr` when `!RuntimeIdentifier.StartsWith('win')`
+- Output DLL on Linux: `Sonarr.dll` (not `Sonarr.Console.dll`)
+- libsqlite3-0 remains installed in runtime image
+
+#### Files Changed
+| File | Changes |
+|------|---------|
+| `Dockerfile` | Multi-stage build, ENTRYPOINT `Sonarr.dll` |
+| `.github/workflows/docker.yml` | Removed backend build + copy steps |
+| `docs/CHANGES.md` | This entry |
+| `docs/HANDOFF.md` | Phase 1I |
+| `docs/DEPLOYMENT.md` | Updated Local Build section |
+| `docs/LEARNINGS.md` | Added lesson 7 |
+
+---
+
 ### 2026-06-21 - Fix: Docker Workflow Publish Path + Disable Upstream Build
 
 **Status:** Complete

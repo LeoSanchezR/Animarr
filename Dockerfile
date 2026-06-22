@@ -1,3 +1,8 @@
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src
+COPY . .
+RUN dotnet build src/Sonarr.sln -c Release
+
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
 
 ENV DOTNET_EnableDiagnostics=0 \
@@ -17,10 +22,10 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-COPY _output/net10.0/ ./
+COPY --from=build /src/_output/net10.0/ ./
 COPY _output/UI/ ./UI/
 
 EXPOSE 8989
 
-ENTRYPOINT ["dotnet", "Sonarr.Console.dll"]
+ENTRYPOINT ["dotnet", "Sonarr.dll"]
 CMD ["-nobrowser", "-data=/config"]

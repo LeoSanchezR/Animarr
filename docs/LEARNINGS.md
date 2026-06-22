@@ -27,6 +27,16 @@
 - **Root Cause:** `simple-import-sort/imports` enforces alphabetical ordering by full import path (`Components/Link/IconButton` < `Components/Link/Link`)
 - **Solution:** Always sort imports alphabetically; use `yarn lint-fix` to auto-correct
 
+### 6. Platform-Conditional AssemblyName in csproj
+- **Problem:** `Sonarr.Console.csproj` references `Sonarr.Console.dll` in ENTRYPOINT, but the DLL doesn't exist in Linux Docker container
+- **Root Cause:** `Sonarr.Console.csproj` lines 8-9: `<AssemblyName>Sonarr</AssemblyName>` conditioned on `!$(RuntimeIdentifier.StartsWith('win'))`. `Directory.Build.props` auto-detects platform (`linux-x64` on Linux), so the assembly name becomes `Sonarr` on non-Windows → output is `Sonarr.dll`
+- **Solution:** Use `Sonarr.dll` in ENTRYPOINT for Linux/Docker builds
+
+### 7. Docker Multi-Stage Build for .NET
+- **Problem:** Single-stage Dockerfile relied on pre-built artifacts from the host, but the assembly name mismatch caused runtime failure
+- **Root Cause:** The Dockerfile used `COPY _output/net10.0/ ./` which expected the build to happen outside Docker, but the DLL name differed between host (Windows) and container (Linux)
+- **Solution:** Multi-stage Dockerfile: build stage runs `dotnet build src/Sonarr.sln -c Release` inside Docker (Linux), ensuring correct assembly name. Runtime stage copies from build stage.
+
 ## Technical Discoveries
 
 ### 1. Theme System
