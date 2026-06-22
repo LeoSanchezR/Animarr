@@ -2,6 +2,46 @@
 
 ## Chronological Development Log
 
+### 2026-06-21 - CI/CD: Docker Image Build to GHCR
+
+**Status:** Complete
+
+#### Workflow
+- Created `.github/workflows/docker.yml`
+- Triggers on push to `v5-develop` and manual `workflow_dispatch`
+- Builds backend (.NET), frontend (Yarn), then Docker image
+- Pushes to `ghcr.io/leosanchezr/animarr`
+
+#### Image Tags
+| Tag | Description |
+|-----|-------------|
+| `latest` | Latest build from default branch |
+| `v5-develop` | Branch-specific tag |
+| `sha-<commit>` | Commit-specific tag |
+
+#### Platforms
+- `linux/amd64`
+- `linux/arm64`
+
+#### Supporting Files
+- Created `.dockerignore` — excludes node_modules, .git, docs from build context
+
+#### Required Permissions
+- `contents: read` — checkout code
+- `packages: write` — push to GHCR
+- Uses `GITHUB_TOKEN` (no additional secrets needed)
+
+#### Files Changed
+| File | Changes |
+|------|---------|
+| `.github/workflows/docker.yml` | New workflow |
+| `.dockerignore` | New file |
+| `docs/DEPLOYMENT.md` | Added GHCR image section, updated TrueNAS examples |
+| `docs/HANDOFF.md` | Added CI/CD status |
+| `docs/CHANGES.md` | This entry |
+
+---
+
 ### 2026-06-21 - AniDB Airing Tracker Research
 
 **Status:** Research Only

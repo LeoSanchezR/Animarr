@@ -64,7 +64,55 @@ yarn stylelint
 
 ## Docker Deployment (Verified)
 
-### Build Image
+### GHCR Image (Recommended)
+
+Pre-built images are published to GitHub Container Registry on every push to `v5-develop`.
+
+| Image | Tags |
+|-------|------|
+| `ghcr.io/leosanchezr/animarr` | `latest`, `v5-develop`, `sha-<commit>` |
+| Platforms | `linux/amd64`, `linux/arm64` |
+
+#### Pull Image
+
+```bash
+# Latest
+docker pull ghcr.io/leosanchezr/animarr:latest
+
+# Specific branch
+docker pull ghcr.io/leosanchezr/animarr:v5-develop
+```
+
+#### Run Container
+
+```bash
+docker run -d \
+  --name animarr \
+  -p 30114:8989 \
+  -v /path/to/config:/config \
+  -v /path/to/tv:/tv \
+  -v /path/to/downloads:/downloads \
+  ghcr.io/leosanchezr/animarr:latest
+```
+
+#### Docker Compose (GHCR)
+
+```yaml
+version: '3.8'
+services:
+  animarr:
+    image: ghcr.io/leosanchezr/animarr:latest
+    container_name: animarr
+    volumes:
+      - /path/to/config:/config
+      - /path/to/tv:/tv
+      - /path/to/downloads:/downloads
+    ports:
+      - 30114:8989
+    restart: unless-stopped
+```
+
+### Local Build
 
 ```bash
 # Build backend first
@@ -143,7 +191,7 @@ docker run -d \
   -v /path/to/config:/config \
   -v /path/to/tv:/tv \
   -v /path/to/downloads:/downloads \
-  animarr:local
+  ghcr.io/leosanchezr/animarr:latest
 ```
 
 ### Docker Compose Example
@@ -152,7 +200,7 @@ docker run -d \
 version: '3.8'
 services:
   animarr:
-    image: animarr:local
+    image: ghcr.io/leosanchezr/animarr:latest
     container_name: animarr
     volumes:
       - /path/to/config:/config
@@ -169,7 +217,7 @@ In TrueNAS SCALE, create a custom Docker app with:
 
 | Setting | Value |
 |---------|-------|
-| Image | `animarr:local` |
+| Image | `ghcr.io/leosanchezr/animarr:latest` |
 | Container Port | `8989` |
 | Host Port | `30114` |
 | Volume (config) | `/config` → host path |

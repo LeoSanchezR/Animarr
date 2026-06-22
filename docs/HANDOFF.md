@@ -53,6 +53,13 @@
 35. ✅ Fixed `Sonarr.Console.csproj` ApplicationIcon → `Animarr.ico`
 36. ✅ TrueNAS port planning: Sonarr=30113, Animarr=30114 (recommended)
 
+### CI/CD: Docker Image Build (Complete)
+37. ✅ Created `.github/workflows/docker.yml` — builds and pushes to GHCR
+38. ✅ Created `.dockerignore` — excludes node_modules, .git, docs from build context
+39. ✅ Image: `ghcr.io/leosanchezr/animarr:latest` (linux/amd64, linux/arm64)
+40. ✅ Triggered on push to `v5-develop` and manual `workflow_dispatch`
+41. ✅ Uses `GITHUB_TOKEN` for GHCR authentication (no additional secrets needed)
+
 ## What Has NOT Been Done
 
 ### Phase 2: Backend Branding (Future)

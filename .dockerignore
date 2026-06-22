@@ -1,0 +1,46 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Node
+node_modules
+frontend/node_modules
+
+# Build artifacts (except _output which Dockerfile needs)
+_output/tests
+_output/coverage
+_temp
+
+# Documentation
+docs
+*.md
+LICENSE
+CLA.md
+CONTRIBUTING.md
+SECURITY.md
+
+# Scripts
+scripts
+distribution
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# GitHub
+.github
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test files
+src/*.Test
+src/*.Integration.Test
