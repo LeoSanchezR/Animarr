@@ -17,6 +17,16 @@
 - **Root Cause:** Keys are used by translate() function with `{appName}` token substitution
 - **Solution:** Only change `appName` token value, not key names (Phase 1)
 
+### 4. Windows Build ICO Compatibility
+- **Problem:** Removing `Sonarr.ico` broke Windows backend build (`src/NzbDrone/Sonarr.csproj` references it)
+- **Root Cause:** Windows `.csproj` and `Resources.resx` files hardcode `Sonarr.ico` path for `ApplicationIcon` and embedded resources
+- **Solution:** Keep `Animarr.ico` as primary branding, copy to `Sonarr.ico` for legacy build compatibility
+
+### 5. Import Sorting with simple-import-sort
+- **Problem:** Adding `Link` import between `Label` and `IconButton` broke alphabetical import order
+- **Root Cause:** `simple-import-sort/imports` enforces alphabetical ordering by full import path (`Components/Link/IconButton` < `Components/Link/Link`)
+- **Solution:** Always sort imports alphabetically; use `yarn lint-fix` to auto-correct
+
 ## Technical Discoveries
 
 ### 1. Theme System

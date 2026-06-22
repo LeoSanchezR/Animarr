@@ -5,7 +5,7 @@
 **Repository:** https://github.com/LeoSanchezR/Animarr
 **Branch:** v5-develop
 **Base:** Sonarr v4.0 (forked from Sonarr/Sonarr)
-**Status:** Phase 1C complete - Distribution assets and cleanup, Docker deployment verified
+**Status:** CI fixes complete - lint, theme cleanup, and Windows ICO compatibility resolved
 
 ## What Has Been Done
 
@@ -59,6 +59,13 @@
 39. ✅ Image: `ghcr.io/leosanchezr/animarr:latest` (linux/amd64, linux/arm64)
 40. ✅ Triggered on push to `v5-develop` and manual `workflow_dispatch`
 41. ✅ Uses `GITHUB_TOKEN` for GHCR authentication (no additional secrets needed)
+
+### Phase 1G: GitHub Actions Build Fixes (Complete)
+42. ✅ Fixed frontend lint errors (import sorting in SeriesDetails.tsx)
+43. ✅ Removed unused `animarrPink`/`animarrHighlight` from dark.js and light.js
+44. ✅ Copied `Animarr.ico` → `Sonarr.ico` for Windows build compatibility
+45. ✅ Prettier auto-fixed long JKAnime URL line in SeriesDetails.tsx
+46. ✅ Full validation passed: lint (0 errors), webpack (success), dotnet build (0 errors)
 
 ## What Has NOT Been Done
 

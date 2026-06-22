@@ -1,7 +1,5 @@
 const animarrMagenta = '#D946EF';
 const animarrPurple = '#A855F7';
-const animarrPink = '#EC4899';
-const animarrHighlight = '#F472B6';
 const darkGray = '#888';
 const mediumGray = '#999';
 const gray = '#adadad';

@@ -6,8 +6,8 @@ import Alert from 'Components/Alert';
 import HeartRating from 'Components/HeartRating';
 import Icon from 'Components/Icon';
 import Label from 'Components/Label';
-import Link from 'Components/Link/Link';
 import IconButton from 'Components/Link/IconButton';
+import Link from 'Components/Link/Link';
 import LoadingIndicator from 'Components/Loading/LoadingIndicator';
 import MetadataAttribution from 'Components/MetadataAttribution';
 import MonitorToggleButton from 'Components/MonitorToggleButton';
@@ -763,7 +763,11 @@ function SeriesDetails({ seriesId }: SeriesDetailsProps) {
                   />
 
                   <Label className={styles.detailsLabel} size={sizes.LARGE}>
-                    <Link to={`https://jkanime.net/buscar/${encodeURIComponent(title)}`}>
+                    <Link
+                      to={`https://jkanime.net/buscar/${encodeURIComponent(
+                        title
+                      )}`}
+                    >
                       <div>
                         <Icon name={icons.EXTERNAL_LINK} size={17} />
                         <span className={styles.links}>JKAnime</span>

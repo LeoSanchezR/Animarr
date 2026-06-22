@@ -2,6 +2,42 @@
 
 ## Chronological Development Log
 
+### 2026-06-21 - Fix: GitHub Actions Build Failures (Lint + Windows ICO)
+
+**Status:** Complete
+
+#### Problem
+GitHub Actions CI was failing with:
+1. Frontend lint errors: import sorting in `SeriesDetails.tsx`, unused variables in theme files
+2. Windows backend build: `Sonarr.ico` referenced but only `Animarr.ico` existed
+
+#### Root Cause
+- **Import sorting:** `Link` import was placed before `IconButton` in `SeriesDetails.tsx`, violating `simple-import-sort/imports` rule
+- **Unused variables:** `animarrPink` and `animarrHighlight` were defined in theme files but never exported
+- **Windows ICO:** `src/NzbDrone/Sonarr.csproj` and `Resources.resx` reference `Sonarr.ico` which was removed during Phase 1B
+
+#### Fixes Applied
+1. **SeriesDetails.tsx:** Reordered imports — `IconButton` now comes before `Link` (alphabetical by path)
+2. **dark.js:** Removed unused `animarrPink` and `animarrHighlight` constants
+3. **light.js:** Removed unused `animarrPink` and `animarrHighlight` constants
+4. **Sonarr.ico:** Copied `Animarr.ico` to `Sonarr.ico` for Windows build compatibility
+5. **SeriesDetails.tsx:** Prettier auto-fixed long JKAnime URL line (line wrapping)
+
+#### Validation
+- `yarn lint`: 0 errors, 0 warnings
+- `webpack`: compiled successfully in 16.9s
+- `dotnet build -c Release`: 0 warnings, 0 errors
+
+#### Files Changed
+| File | Changes |
+|------|---------|
+| `frontend/src/Series/Details/SeriesDetails.tsx` | Reordered imports, prettier formatting |
+| `frontend/src/Styles/Themes/dark.js` | Removed unused `animarrPink`, `animarrHighlight` |
+| `frontend/src/Styles/Themes/light.js` | Removed unused `animarrPink`, `animarrHighlight` |
+| `src/NzbDrone.Host/Sonarr.ico` | Copied from Animarr.ico for compatibility |
+
+---
+
 ### 2026-06-21 - CI/CD: Docker Image Build to GHCR
 
 **Status:** Complete
