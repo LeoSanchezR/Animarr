@@ -99,6 +99,12 @@
 67. ✅ UI copied from build context (frontend builds before Docker)
 68. ✅ No changes to docker.yml — frontend build + Docker context pattern unchanged
 
+### Phase 1M: Docker Build — PublishAllRids Target (Complete)
+69. ✅ Changed from `dotnet publish` to `dotnet msbuild -restore src/Sonarr.sln -t:PublishAllRids` (exact upstream command)
+70. ✅ Fixed `.dockerignore`: keep test source files, exclude `**/bin/` and `**/obj/` build outputs
+71. ✅ Added validation: `test -f` for Sonarr.dll and Sonarr.Mono.dll after build
+72. ✅ Dockerfile build command now matches upstream CI exactly
+
 ## What Has NOT Been Done
 
 ### Phase 2: Backend Branding (Future)

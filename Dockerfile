@@ -1,15 +1,20 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 COPY . .
-RUN dotnet publish src/Sonarr.sln \
-  -c Release \
-  -f net10.0 \
-  -r linux-x64 \
-  --self-contained false \
+RUN dotnet msbuild -restore src/Sonarr.sln \
+  -p:SelfContained=true \
+  -p:Configuration=Release \
+  -p:Platform=Posix \
+  -p:RuntimeIdentifiers=linux-x64 \
+  -p:EnableWindowsTargeting=true \
   -p:RunAnalyzers=false \
   -p:RunAnalyzersDuringBuild=false \
   -p:TreatWarningsAsErrors=false \
-  -p:EnforceCodeStyleInBuild=false
+  -p:EnforceCodeStyleInBuild=false \
+  -t:PublishAllRids
+
+RUN test -f _output/net10.0/linux-x64/publish/Sonarr.dll
+RUN test -f _output/net10.0/linux-x64/publish/Sonarr.Mono.dll
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
 

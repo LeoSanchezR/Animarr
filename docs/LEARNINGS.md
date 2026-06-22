@@ -57,6 +57,11 @@
 - **Package step:** Copies from `publish/` to `_artifacts/$runtime/$framework/Sonarr/`, removes Windows-only DLLs, keeps Sonarr.Mono for Linux
 - **Key command:** `dotnet msbuild -restore src/Sonarr.sln -p:SelfContained=true -p:Configuration=Release -p:Platform=Posix -p:RuntimeIdentifiers=linux-x64 -p:EnableWindowsTargeting=true -t:PublishAllRids`
 
+### 12. `.dockerignore` Must Keep Test Source for Solution Build
+- **Problem:** `.dockerignore` excluding `src/*.Test` and `src/*.Integration.Test` caused `dotnet msbuild -restore` to fail — solution references test projects that weren't in Docker context
+- **Root Cause:** Test project `.csproj` files are needed for solution restore, even though they aren't built for the publish target
+- **Solution:** Changed `.dockerignore` to exclude `**/bin/` and `**/obj/` (build outputs) instead of entire test directories. Test source files are small and needed for restore.
+
 ## Technical Discoveries
 
 ### 1. Theme System

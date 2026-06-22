@@ -16,6 +16,8 @@ frontend/node_modules
 _output/tests
 _output/coverage
 _temp
+**/bin/
+**/obj/
 
 # Documentation
 docs
@@ -41,6 +43,8 @@ docker-compose*.yml
 .DS_Store
 Thumbs.db
 
-# Test files
-src/*.Test
-src/*.Integration.Test
+# Test build outputs (keep source for solution restore)
+src/*.Test/bin
+src/*.Test/obj
+src/*.Integration.Test/bin
+src/*.Integration.Test/obj

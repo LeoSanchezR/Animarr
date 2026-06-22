@@ -2,6 +2,29 @@
 
 ## Chronological Development Log
 
+### 2026-06-22 - Fix: Docker build — use upstream PublishAllRids target
+
+**Status:** Complete
+
+#### Problem
+Docker build failed with `dotnet publish src/Sonarr.sln` because `.dockerignore` excluded test project source files (`src/*.Test`, `src/*.Integration.Test`), causing restore failures for projects referenced in the solution.
+
+#### Fix
+1. Changed Dockerfile build command from `dotnet publish` to `dotnet msbuild -restore ... -t:PublishAllRids` (matching upstream `.github/actions/build/action.yml`)
+2. Fixed `.dockerignore` to keep test project source files while excluding build outputs (`**/bin/`, `**/obj/`)
+3. Added validation steps to verify `Sonarr.dll` and `Sonarr.Mono.dll` exist after build
+
+#### Files Changed
+| File | Change |
+|------|--------|
+| `Dockerfile` | `dotnet publish` → `dotnet msbuild -restore ... -t:PublishAllRids`, added validation |
+| `.dockerignore` | Keep test source, exclude `**/bin/` and `**/obj/` |
+| `docs/CHANGES.md` | This entry |
+| `docs/HANDOFF.md` | Phase 1M |
+| `docs/LEARNINGS.md` | Lesson 12 |
+
+---
+
 ### 2026-06-22 - Fix: Full Docker build audit — use official upstream package output
 
 **Status:** Complete
