@@ -1,7 +1,11 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 COPY . .
-RUN dotnet build src/NzbDrone.Console/Sonarr.Console.csproj -c Release \
+RUN dotnet publish src/Sonarr.sln \
+  -c Release \
+  -f net10.0 \
+  -r linux-x64 \
+  --self-contained false \
   -p:RunAnalyzers=false \
   -p:RunAnalyzersDuringBuild=false \
   -p:TreatWarningsAsErrors=false \
@@ -26,7 +30,7 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-COPY --from=build /src/_output/net10.0/ ./
+COPY --from=build /src/_output/net10.0/linux-x64/publish/ ./
 COPY _output/UI/ ./UI/
 
 EXPOSE 8989

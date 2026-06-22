@@ -47,6 +47,16 @@
 - **Root Cause:** Sonarr's legacy code style places usings at file top; modern StyleCop/IDE rules require them inside namespaces. This is a pre-existing code style issue, not a compilation error.
 - **Solution:** Disable analyzers during Docker build with `-p:RunAnalyzers=false -p:RunAnalyzersDuringBuild=false -p:TreatWarningsAsErrors=false -p:EnforceCodeStyleInBuild=false`
 
+### 10. `dotnet build` vs `dotnet publish` for Docker
+- **Problem:** `dotnet build` on a single csproj produces only compile output, missing runtime dependencies and platform-specific assemblies like `Sonarr.Mono.dll`
+- **Root Cause:** `dotnet build` does not resolve transitive dependencies outside the project reference chain. `Sonarr.Mono` is loaded dynamically at runtime but is not referenced by `Sonarr.Console.csproj`. The upstream build uses `dotnet msbuild -t:PublishAllRids` on the entire solution.
+- **Solution:** Use `dotnet publish src/Sonarr.sln` which builds all projects and produces complete publish output at `_output/net10.0/linux-x64/publish/`
+
+### 11. Upstream Build Output Structure
+- **Finding:** The official upstream produces self-contained publish output at `_output/$framework/$runtime/publish/` (e.g., `_output/net10.0/linux-x64/publish/`)
+- **Package step:** Copies from `publish/` to `_artifacts/$runtime/$framework/Sonarr/`, removes Windows-only DLLs, keeps Sonarr.Mono for Linux
+- **Key command:** `dotnet msbuild -restore src/Sonarr.sln -p:SelfContained=true -p:Configuration=Release -p:Platform=Posix -p:RuntimeIdentifiers=linux-x64 -p:EnableWindowsTargeting=true -t:PublishAllRids`
+
 ## Technical Discoveries
 
 ### 1. Theme System

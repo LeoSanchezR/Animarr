@@ -90,6 +90,15 @@
 60. ✅ Added `-p:RunAnalyzers=false -p:RunAnalyzersDuringBuild=false -p:TreatWarningsAsErrors=false -p:EnforceCodeStyleInBuild=false`
 61. ✅ Pre-existing code style issues should not block Docker image build
 
+### Phase 1L: Full Docker Build Audit — Official Package Output (Complete)
+62. ✅ Audited upstream `.github/actions/build/action.yml` — uses `dotnet msbuild -t:PublishAllRids` on entire solution
+63. ✅ Root cause: `dotnet build` on single csproj skips Sonarr.Mono, wrong output path, no publish output
+64. ✅ Changed to `dotnet publish src/Sonarr.sln -c Release -f net10.0 -r linux-x64 --self-contained false`
+65. ✅ Updated COPY path: `_output/net10.0/linux-x64/publish/` (matches upstream output structure)
+66. ✅ All required DLLs now included: Sonarr.dll, Sonarr.Mono.dll, Sonarr.Common.dll, Sonarr.Core.dll, Sonarr.Host.dll, Sonarr.Http.dll, Sonarr.Api.V3.dll, Sonarr.Api.V5.dll, Sonarr.SignalR.dll, RuntimePatches assemblies
+67. ✅ UI copied from build context (frontend builds before Docker)
+68. ✅ No changes to docker.yml — frontend build + Docker context pattern unchanged
+
 ## What Has NOT Been Done
 
 ### Phase 2: Backend Branding (Future)

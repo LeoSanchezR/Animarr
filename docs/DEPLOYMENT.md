@@ -136,6 +136,8 @@ docker run -d \
 
 - Uses `mcr.microsoft.com/dotnet/aspnet:10.0` (full, not chiseled)
 - `libsqlite3-0` installed in image (required by System.Data.SQLite)
+- Build uses `dotnet publish src/Sonarr.sln` (entire solution) to produce complete runtime output including `Sonarr.Mono.dll`
+- Output path: `_output/net10.0/linux-x64/publish/` (matches upstream CI structure)
 - First boot runs ~250 database migrations (~3 minutes)
 - UI serves at http://localhost:8989
 - Data persists in `/config` volume

@@ -2,6 +2,49 @@
 
 ## Chronological Development Log
 
+### 2026-06-22 - Fix: Full Docker build audit — use official upstream package output
+
+**Status:** Complete
+
+#### Problem
+Docker image was missing DLLs one by one (Sonarr.Console.dll → Sonarr.dll → Sonarr.Mono.dll). Each fix was a band-aid because the Dockerfile was not using the repository's intended build/package output.
+
+#### Root Cause
+1. `dotnet build` only compiles — it does not produce publish output with runtime dependencies
+2. Building only `Sonarr.Console.csproj` skips `Sonarr.Mono` (not a transitive dependency of Console)
+3. Wrong output path: `_output/net10.0/` vs `_output/net10.0/linux-x64/publish/`
+
+#### Official Upstream Build Flow
+The upstream `.github/actions/build/action.yml` uses:
+```
+dotnet msbuild -restore src/Sonarr.sln \
+  -p:SelfContained=true -p:Configuration=Release \
+  -p:Platform=Posix -p:RuntimeIdentifiers=linux-x64 \
+  -p:EnableWindowsTargeting=true -t:PublishAllRids
+```
+This builds the **entire solution** (all projects including Sonarr.Mono) and produces publish output at `_output/net10.0/linux-x64/publish/`.
+
+#### Fix
+Replaced `dotnet build src/NzbDrone.Console/Sonarr.Console.csproj` with:
+```
+dotnet publish src/Sonarr.sln \
+  -c Release -f net10.0 -r linux-x64 --self-contained false \
+  -p:RunAnalyzers=false -p:RunAnalyzersDuringBuild=false \
+  -p:TreatWarningsAsErrors=false -p:EnforceCodeStyleInBuild=false
+```
+Updated COPY path from `_output/net10.0/` to `_output/net10.0/linux-x64/publish/`.
+
+#### Files Changed
+| File | Change |
+|------|--------|
+| `Dockerfile` | `dotnet build` → `dotnet publish src/Sonarr.sln`, updated COPY path |
+| `docs/CHANGES.md` | This entry |
+| `docs/HANDOFF.md` | Phase 1L |
+| `docs/LEARNINGS.md` | Lessons 10 + 11 |
+| `docs/DEPLOYMENT.md` | Updated Notes section |
+
+---
+
 ### 2026-06-22 - Fix: Docker build StyleCop SA1200 analyzer failures
 
 **Status:** Complete
