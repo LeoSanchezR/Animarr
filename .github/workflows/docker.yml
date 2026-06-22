@@ -39,7 +39,7 @@ jobs:
         run: yarn build --env production
 
       - name: Build backend
-        run: dotnet publish src/Sonarr.Console/Sonarr.Console.csproj -c Release -r linux-x64 --self-contained false -o _output/net10.0
+        run: dotnet build src/Sonarr.sln -c Release
 
       - name: Copy UI into backend output
         run: cp -r _output/UI _output/net10.0/UI

@@ -2,6 +2,37 @@
 
 ## Chronological Development Log
 
+### 2026-06-21 - Fix: Docker Workflow Publish Path + Disable Upstream Build
+
+**Status:** Complete
+
+#### Problem
+1. GitHub Actions Docker Build failed with `MSBUILD : error MSB1009: Project file does not exist. Switch: src/Sonarr.Console/Sonarr.Console.csproj`
+2. Upstream `build_v5.yml` ran on every push, causing unnecessary CI runs
+
+#### Root Cause
+- `docker.yml` referenced `src/Sonarr.Console/Sonarr.Console.csproj` but the actual path is `src/NzbDrone.Console/Sonarr.Console.csproj`
+- Additionally, `dotnet publish` with `-r linux-x64` triggers StyleCop analyzers (SA1200) not enforced by solution-level build
+
+#### Fixes Applied
+1. **docker.yml:** Changed `dotnet publish src/Sonarr.Console/...` to `dotnet build src/Sonarr.sln -c Release` — matches local build command, avoids RID-specific StyleCop enforcement
+2. **build_v5.yml:** Removed `push` and `pull_request` triggers; now `workflow_dispatch` only (does not delete the file)
+
+#### Validation
+- `dotnet build src/Sonarr.sln -c Release`: 0 warnings, 0 errors
+- Output confirmed at `_output/net10.0/Sonarr.Console.dll`
+- `build_v5.yml`: no longer triggers on push/pull_request
+
+#### Files Changed
+| File | Changes |
+|------|---------|
+| `.github/workflows/docker.yml` | Fixed build command from `dotnet publish` to `dotnet build src/Sonarr.sln` |
+| `.github/workflows/build_v5.yml` | Changed triggers to `workflow_dispatch` only |
+| `docs/CHANGES.md` | This entry |
+| `docs/HANDOFF.md` | Updated CI/CD status |
+
+---
+
 ### 2026-06-21 - Fix: GitHub Actions Build Failures (Lint + Windows ICO)
 
 **Status:** Complete

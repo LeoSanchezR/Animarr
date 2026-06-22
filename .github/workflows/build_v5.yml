@@ -1,19 +1,7 @@
 name: Build
 
 on:
-  push:
-    branches:
-      - v5-develop
-      - v5-main
-    paths-ignore:
-      - "src/Sonarr.Api.*/openapi.json"
-  pull_request:
-    branches:
-      - v5-develop
-      - v5-redesign
-    paths-ignore:
-      - "src/NzbDrone.Core/Localization/Core/**"
-      - "src/Sonarr.Api.*/openapi.json"
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}

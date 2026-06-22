@@ -67,6 +67,11 @@
 45. ✅ Prettier auto-fixed long JKAnime URL line in SeriesDetails.tsx
 46. ✅ Full validation passed: lint (0 errors), webpack (success), dotnet build (0 errors)
 
+### Phase 1H: Docker Workflow Fix + Upstream Build Disable (Complete)
+47. ✅ Fixed `docker.yml` — changed `dotnet publish` (wrong csproj path) to `dotnet build src/Sonarr.sln`
+48. ✅ Disabled upstream `build_v5.yml` push/PR triggers — now `workflow_dispatch` only
+49. ✅ Validated: `dotnet build src/Sonarr.sln -c Release` succeeds, output at `_output/net10.0/`
+
 ## What Has NOT Been Done
 
 ### Phase 2: Backend Branding (Future)
